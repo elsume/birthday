@@ -1,0 +1,151 @@
+/* Base Styles */
+body {
+  background-image: url('img/antares.PNG');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80vw 80vh;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  background-color: #333333;
+}
+
+/* Image Buttons */
+.image-button {
+  position: absolute;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.image-button img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-button:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Navigation Buttons */
+#forward {
+  width: 12%;
+  top: 50%;
+  right: -5%;
+  z-index: 1000;
+}
+
+#back {
+  width: 12%;
+  top: 50%;
+  left: 7%;
+  z-index: 1000;
+}
+
+/* Button Positions */
+#locker { width: 17%; top: 50.5%; left: 18.5%; z-index: 5; }
+#desk { width: 30%; top: 57%; left: 50%; z-index: 1; }
+#backpack { width: 20%; top: 67%; left: 70%; z-index: 1; }
+#pencil_case { width: 10%; top: 45%; left: 42%; z-index: 5; }
+#uke { width: 20%; top: 60%; left: 45%; z-index: 3; }
+#dodie { width: 20%; top: 76%; left: 60%; z-index: 2; }
+#boba { width: 20%; top: 54%; left: 26.5%; z-index: 4; }
+#gucci { width: 25%; top: 36%; left: 51%; z-index: 4; }
+
+/* Heart Tree Section */
+.heart_tree {
+  display: none;
+}
+
+/* Chatbox */
+.chatbox {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 1000px;
+  height: auto;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+/* Character Overlays */
+.resting, .talking {
+  position: fixed;
+  max-width: 90px;
+  height: auto;
+  z-index: 1002;
+}
+.resting { bottom: 7%; left: 13.5%; }
+.talking { bottom: 7%; left: 13.5%; display: none; }
+
+/* Chat Text */
+.chat-text {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  color: black;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px black;
+  z-index: 1003;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff30;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.chat-text.visible {
+  opacity: 1;
+}
+
+.chat-text.typing:after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image {
+  max-width: 80%;
+  max-height: 80%;
+  z-index: 1000;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
