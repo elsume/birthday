@@ -149,3 +149,35 @@ body {
 .modal-overlay.active {
   display: flex;
 }
+
+/* Discovery Counter */
+#discovery-counter {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  z-index: 2000;
+}
+
+#discovery-counter span {
+  font-weight: bold;
+}
+
+#discovered-count {
+  color: #4CAF50;
+}
+
+/* New Discovery Animation */
+.new-discovery {
+  animation: pulse 1s;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

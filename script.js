@@ -12,6 +12,28 @@ document.addEventListener('DOMContentLoaded', function() {
     chatText.className = 'chat-text';
     chatbox.appendChild(chatText);
 
+    // Discovery tracking
+    const discoveredButtons = new Set();
+    const totalButtons = 8; // Update this if you add more buttons
+    
+    // Load discovered buttons from localStorage
+    if (localStorage.getItem('discoveredButtons')) {
+        const saved = JSON.parse(localStorage.getItem('discoveredButtons'));
+        saved.forEach(id => discoveredButtons.add(id));
+        updateDiscoveryCount();
+    }
+
+    // Create discovery counter UI
+    const discoveryCounter = document.createElement('div');
+    discoveryCounter.id = 'discovery-counter';
+    discoveryCounter.innerHTML = `Discovered: <span id="discovered-count">${discoveredButtons.size}</span>/<span id="total-buttons">${totalButtons}</span>`;
+    document.body.appendChild(discoveryCounter);
+
+    function updateDiscoveryCount() {
+        document.getElementById('discovered-count').textContent = discoveredButtons.size;
+        localStorage.setItem('discoveredButtons', JSON.stringify([...discoveredButtons]));
+    }
+
     // Typewriter Effect Function
     function typeWriter(textElement, text, speed = 30) {
         let i = 0;
@@ -99,22 +121,22 @@ document.addEventListener('DOMContentLoaded', function() {
         { 
             id: 'uke',
             modal: 'ukeModal',
-            text: "The backpack is full of snacks and stationery."
+            text: "The ukulele plays a sweet melody when touched."
         },
         { 
             id: 'dodie',
             modal: 'dodieModal',
-            text: "The backpack is full of snacks and stationery."
+            text: "The notebook contains heartfelt scribbles."
         },
         { 
             id: 'boba',
             modal: 'bobaModal',
-            text: "The backpack is full of snacks and stationery."
+            text: "A refreshing boba tea to quench your thirst."
         },
         { 
             id: 'gucci',
             modal: '420gucciModal',
-            text: "The backpack is full of snacks and stationery."
+            text: "Special memories with friends."
         }
     ];
 
@@ -126,6 +148,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (btnElement && modalElement) {
             btnElement.addEventListener('click', function(e) {
                 e.stopPropagation();
+                
+                // Track discovery
+                if (!discoveredButtons.has(button.id)) {
+                    discoveredButtons.add(button.id);
+                    updateDiscoveryCount();
+                    btnElement.classList.add('new-discovery');
+                    setTimeout(() => btnElement.classList.remove('new-discovery'), 1000);
+                }
+                
                 modalElement.classList.add('active');
                 typeWriter(chatText, button.text);
             });
@@ -134,13 +165,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Close modal when clicking anywhere
     document.addEventListener('click', function(e) {
-        // Only close if we're not clicking a modal trigger button
         if (!e.target.closest('.image-button[data-modal], .image-button[id]')) {
             document.querySelectorAll('.modal-overlay').forEach(modal => {
-            modal.classList.remove('active');
+                modal.classList.remove('active');
             });
-            // Hide chat text when modal closes
             chatText.classList.remove('visible');
         }
-        });
+    });
 });
