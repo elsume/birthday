@@ -170,14 +170,3 @@ body {
 #discovered-count {
   color: #4CAF50;
 }
-
-/* New Discovery Animation */
-.new-discovery {
-  animation: pulse 1s;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
