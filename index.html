@@ -11,78 +11,162 @@
     <link rel="icon" href="https://img.icons8.com/?size=100&id=HzgShlskvVyY&format=png&color=000000">
 </head>
 <body>
-    <header>
-        <button class="image-button" id="forward">
-            <img src="img/forward.png" alt="Next">
-        </button>
-        <button class="image-button" id="back">
-            <img src="img/back.png" alt="Back">
-        </button>
-    </header>
-    
-    <main>
-        <div class="antares">
-            <button class="image-button" id="locker">
-                <img src="img/locker.PNG" alt="Locker">
-            </button>
-            <button class="image-button" id="desk">
-                <img src="img/desk.PNG" alt="Desk">
-            </button>
-            <button class="image-button" id="backpack">
-                <img src="img/backpack.PNG" alt="Backpack">
-            </button>
-            <button class="image-button" id="pencil_case">
-                <img src="img/pencil_case.PNG" alt="Pencil Case">
-            </button>
+    <div id="name-entry">
+        <div class="name-container">
+            <h1>Welcome!</h1>
+            <p>To access this special birthday gift, please enter your name:</p>
+            <input type="text" id="name-input" placeholder="Type your name here">
+            <button id="submit-name">Enter</button>
+            <p id="name-error" class="error"></p>
         </div>
+    </div>
+
+    <div id="main-content" style="display:none;">
+        <header>
+            <button class="image-button" id="forward">
+                <img src="img/forward.png" alt="Next">
+            </button>
+            <button class="image-button" id="back">
+                <img src="img/back.png" alt="Back">
+            </button>
+        </header>
         
-        <div class="heart_tree">
-            <button class="image-button" id="uke">
-                <img src="img/uke.PNG" alt="Ukulele">
-            </button>
-            <button class="image-button" id="dodie">
-                <img src="img/dodie.PNG" alt="Notebook">
-            </button>
-            <button class="image-button" id="boba">
-                <img src="img/boba.png" alt="Notebook">
-            </button>
-            <button class="image-button" id="gucci">
-                <img src="img/420gucci.png" alt="Notebook">
-            </button>
-        </div>
+        <main>
+            <div class="antares">
+                <button class="image-button" id="locker">
+                    <img src="img/locker.PNG" alt="Locker">
+                </button>
+                <button class="image-button" id="desk">
+                    <img src="img/desk.PNG" alt="Desk">
+                </button>
+                <button class="image-button" id="backpack">
+                    <img src="img/backpack.PNG" alt="Backpack">
+                </button>
+                <button class="image-button" id="pencil_case">
+                    <img src="img/pencil_case.PNG" alt="Pencil Case">
+                </button>
+            </div>
+            
+            <div class="heart_tree">
+                <button class="image-button" id="uke">
+                    <img src="img/uke.PNG" alt="Ukulele">
+                </button>
+                <button class="image-button" id="dodie">
+                    <img src="img/dodie.PNG" alt="Notebook">
+                </button>
+                <button class="image-button" id="boba">
+                    <img src="img/boba.png" alt="Notebook">
+                </button>
+                <button class="image-button" id="gucci">
+                    <img src="img/420gucci.png" alt="Notebook">
+                </button>
+            </div>
+
+            <div class="screen">
+                <button class="image-button" id="mc">
+                    <img src="img/mc.png" alt="Ukulele">
+                </button>
+                <button class="image-button" id="sdv">
+                    <img src="img/sdv.png" alt="Notebook">
+                </button>
+                <button class="image-button" id="sky">
+                    <img src="img/sky.png" alt="Notebook">
+                </button>
+                <button class="image-button" id="jam">
+                    <img src="img/jam.png" alt="Notebook">
+                </button>
+            </div>
+            
+            <div class="desktop">
+                <button class="image-button" id="yago">
+                    <img src="img/yago.png" alt="Ukulele">
+                </button>
+                <button class="image-button" id="notes">
+                    <img src="img/notes.png" alt="Notebook">
+                </button>
+                <button class="image-button" id="redbook">
+                    <img src="img/redbook.png" alt="Notebook">
+                </button>
+                <button class="image-button" id="lego">
+                    <img src="img/lego.png" alt="Notebook">
+                </button>
+            </div>
+
+            <div class="journal">
+                <button class="image-button" id="entry1">
+                    <img src="img/entry1.png" alt="Ukulele">
+                </button>
+                <button class="image-button" id="entry2">
+                    <img src="img/entry2.png" alt="Notebook">
+                </button>
+                <button class="image-button" id="entry3">
+                    <img src="img/entry3.png" alt="Notebook">
+                </button>
+                <button class="image-button" id="entry4">
+                    <img src="img/entry4.png" alt="Notebook">
+                </button>
+            </div>
+
+            <!-- Modals -->
+            <div class="modal-overlay" id="pencilCaseModal">
+                <img src="img/knife.png" class="modal-image" alt="Knife">
+            </div>
+            <div class="modal-overlay" id="lockerModal">
+                <img src="img/note.png" class="modal-image" alt="Locker Contents">
+            </div>
+            <div class="modal-overlay" id="deskModal">
+                <img src="img/7thgr.png" class="modal-image" alt="Desk Contents">
+            </div>
+            <div class="modal-overlay" id="backpackModal">
+                <img src="img/sketchbook.png" class="modal-image" alt="Backpack Contents">
+            </div>
+
+            <div class="modal-overlay" id="ukeModal">
+                <img src="img/uketgthr.png" class="modal-image" alt="Ukulele Contents">
+            </div>
+            <div class="modal-overlay" id="dodieModal">
+                <img src="img/she.png" class="modal-image" alt="Ukulele Contents">
+            </div>
+            <div class="modal-overlay" id="bobaModal">
+                <img src="img/meow.png" class="modal-image" alt="Boba Contents">
+            </div>
+            <div class="modal-overlay" id="420gucciModal">
+                <img src="img/friends.png" class="modal-image" alt="420gucci Contents">
+            </div>
+
+            <div class="modal-overlay" id="mcModal">
+                <img src="img/mcus.png" class="modal-image" alt="420gucci Contents">
+            </div>
+            <div class="modal-overlay" id="sdvModal">
+                <img src="img/sdvus.png" class="modal-image" alt="420gucci Contents">
+            </div>
+            <div class="modal-overlay" id="jamModal">
+                <img src="img/jamus.png" class="modal-image" alt="420gucci Contents">
+            </div>
+            <div class="modal-overlay" id="skyModal">
+                <img src="img/skyus.PNG" class="modal-image" alt="420gucci Contents">
+            </div>
+
+            <div class="modal-overlay" id="entry1Modal">
+                <img src="img/j1.png" class="modal-image" alt="420gucci Contents">
+            </div>
+            <div class="modal-overlay" id="entry2Modal">
+                <img src="img/j2.png" class="modal-image" alt="420gucci Contents">
+            </div>
+            <div class="modal-overlay" id="entry3Modal">
+                <img src="img/j3.png" class="modal-image" alt="420gucci Contents">
+            </div>
+            <div class="modal-overlay" id="entry4Modal">
+                <img src="img/j4.png" class="modal-image" alt="420gucci Contents">
+            </div>
+        </main>
         
-        <!-- Modals -->
-        <div class="modal-overlay" id="pencilCaseModal">
-            <img src="img/knife.png" class="modal-image" alt="Knife">
-        </div>
-        <div class="modal-overlay" id="lockerModal">
-            <img src="img/note.png" class="modal-image" alt="Locker Contents">
-        </div>
-        <div class="modal-overlay" id="deskModal">
-            <img src="img/7thgr.png" class="modal-image" alt="Desk Contents">
-        </div>
-        <div class="modal-overlay" id="backpackModal">
-            <img src="img/sketchbook.png" class="modal-image" alt="Backpack Contents">
-        </div>
-        <div class="modal-overlay" id="ukeModal">
-            <img src="img/uketgthr.png" class="modal-image" alt="Ukulele Contents">
-        </div>
-        <div class="modal-overlay" id="dodieModal">
-            <img src="img/she.png" class="modal-image" alt="Ukulele Contents">
-        </div>
-        <div class="modal-overlay" id="bobaModal">
-            <img src="img/meow.png" class="modal-image" alt="Boba Contents">
-        </div>
-        <div class="modal-overlay" id="420gucciModal">
-            <img src="img/friends.png" class="modal-image" alt="420gucci Contents">
-        </div>
-    </main>
-    
-    <footer>
-        <img src="img/chatbox.png" class="chatbox" alt="Chatbox">
-        <img src="img/talking.png" class="talking" alt="Talking">
-        <img src="img/resting.png" class="resting" alt="Resting">
-    </footer>
+        <footer>
+            <img src="img/chatbox.png" class="chatbox" alt="Chatbox">
+            <img src="img/talking.png" class="talking" alt="Talking">
+            <img src="img/resting.png" class="resting" alt="Resting">
+        </footer>
+    </div>
     
     <script src="script.js"></script>
 </body>

@@ -1,13 +1,96 @@
 /* Base Styles */
+/* Name Entry Screen */
+#name-entry {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.name-container {
+  text-align: center;
+  max-width: 400px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+#name-input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#submit-name {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#submit-name:hover {
+  background: #ff5252;
+  transform: scale(1.05);
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 1rem;
+  min-height: 1.5rem;
+}
+
+/* Hide name entry when not needed */
+#name-entry.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Show main content when unlocked */
+#main-content.visible {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  animation: fadeIn 1s ease;
+}
+
+#main-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 body {
   background-image: url('img/antares.PNG');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 80vw 80vh;
+  background-size: 120vh;
   min-height: 100vh;
   margin: 0;
   position: relative;
-  background-color: #333333;
+  background-color: rgb(211, 211, 211);
 }
 
 /* Image Buttons */
@@ -49,21 +132,44 @@ body {
 }
 
 /* Button Positions */
-#locker { width: 17%; top: 50.5%; left: 18.5%; z-index: 5; }
+#locker { width: 17%; top: 45%; left: 24.8%; z-index: 5; }
 #desk { width: 30%; top: 57%; left: 50%; z-index: 1; }
-#backpack { width: 20%; top: 67%; left: 70%; z-index: 1; }
+#backpack { width: 20%; top: 67%; left: 70%; z-index: 5; }
 #pencil_case { width: 10%; top: 45%; left: 42%; z-index: 5; }
+
 #uke { width: 20%; top: 60%; left: 45%; z-index: 3; }
-#dodie { width: 20%; top: 76%; left: 60%; z-index: 2; }
-#boba { width: 20%; top: 54%; left: 26.5%; z-index: 4; }
-#gucci { width: 25%; top: 36%; left: 51%; z-index: 4; }
+#dodie { width: 20%; top: 80%; left: 60%; z-index: 2; }
+#boba { width: 20%; top: 54%; left: 31%; z-index: 4; }
+#gucci { width: 20%; top: 38%; left: 50%; z-index: 4; }
+
+/* Screen Scene Buttons */
+#mc { width: 10%; top: 22%; left: 28%; z-index: 3; }
+#sdv { width: 10%; top: 72%; left: 28%; z-index: 3; }
+#sky { width: 10%; top: 22%; left: 71%; z-index: 3; }
+#jam { width: 10%; top: 72%; left: 71%; z-index: 3; }
+
+/* Desktop Scene Buttons */
+#yago { width: 15%; top: 72%; left: 34%; z-index: 3; }
+#notes { width: 14%; top: 25%; left: 43%; z-index: 3; }
+#redbook { width: 10%; top: 33%; left: 66.5%; z-index: 3; }
+#lego { width: 10%; top: 72%; left: 70%; z-index: 3; }
+
+/* Journal Scene Buttons */
+#entry1 { width: 15%; top: 29%; left: 40%; z-index: 3; }
+#entry2 { width: 15%; top: 50%; left: 38%; z-index: 3; }
+#entry3 { width: 15%; top: 33%; left: 60%; z-index: 3; }
+#entry4 { width: 15%; top: 55%; left: 58%; z-index: 3; }
+
 
 /* Heart Tree Section */
-.heart_tree {
+.heart_tree,
+.desktop,
+.journal,
+.screen {
   display: none;
 }
 
-/* Chatbox */
+/* Chatbox Container */
 .chatbox {
   position: fixed;
   bottom: 0;
@@ -73,18 +179,21 @@ body {
   max-width: 1000px;
   height: auto;
   z-index: 1001;
-  pointer-events: none;
 }
 
-/* Character Overlays */
+/* Character Images */
 .resting, .talking {
   position: fixed;
   max-width: 90px;
   height: auto;
   z-index: 1002;
+  bottom: 5%;
+  left: 25.5%;
 }
-.resting { bottom: 7%; left: 13.5%; }
-.talking { bottom: 7%; left: 13.5%; display: none; }
+
+.talking {
+  display: none;
+}
 
 /* Chat Text */
 .chat-text {
@@ -92,14 +201,12 @@ body {
   bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
-  max-width: 500px;
+  width: 70%;
+  max-width: 600px;
   text-align: center;
-  color: black;
+  color: white;
   font-family: 'Courier New', monospace;
   font-size: 16px;
-  text-shadow: 1px 1px 2px black;
-  z-index: 1003;
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
@@ -110,13 +217,14 @@ body {
   border: 2px solid #ffffff30;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 1009;
 }
 
 .chat-text.visible {
   opacity: 1;
 }
 
-.chat-text.typing:after {
+.chat-text.typing::after {
   content: '|';
   animation: blink 1s step-end infinite;
 }
