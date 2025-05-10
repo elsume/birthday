@@ -12,26 +12,28 @@ document.addEventListener('DOMContentLoaded', function() {
     chatText.className = 'chat-text';
     chatbox.appendChild(chatText);
 
-    // Discovery tracking
+    // Discovery tracking (session only)
     const discoveredButtons = new Set();
-    const totalButtons = 8; // Update this if you add more buttons
-    
-    // Load discovered buttons from localStorage
-    if (localStorage.getItem('discoveredButtons')) {
-        const saved = JSON.parse(localStorage.getItem('discoveredButtons'));
-        saved.forEach(id => discoveredButtons.add(id));
-        updateDiscoveryCount();
-    }
+    const totalButtons = 8; // pencil_case, locker, desk, backpack, uke, dodie, boba, gucci
 
-    // Create discovery counter UI
+    // Create and style discovery counter
     const discoveryCounter = document.createElement('div');
     discoveryCounter.id = 'discovery-counter';
-    discoveryCounter.innerHTML = `Discovered: <span id="discovered-count">${discoveredButtons.size}</span>/<span id="total-buttons">${totalButtons}</span>`;
+    discoveryCounter.innerHTML = `Discovered: <span id="discovered-count">0</span>/<span id="total-buttons">${totalButtons}</span>`;
+    discoveryCounter.style.position = 'fixed';
+    discoveryCounter.style.top = '20px';
+    discoveryCounter.style.right = '20px';
+    discoveryCounter.style.background = 'rgba(0,0,0,0.7)';
+    discoveryCounter.style.color = 'white';
+    discoveryCounter.style.padding = '10px 15px';
+    discoveryCounter.style.borderRadius = '5px';
+    discoveryCounter.style.fontFamily = "'Courier New', monospace";
+    discoveryCounter.style.zIndex = '2000';
     document.body.appendChild(discoveryCounter);
 
+    // Update discovery counter display
     function updateDiscoveryCount() {
         document.getElementById('discovered-count').textContent = discoveredButtons.size;
-        localStorage.setItem('discoveredButtons', JSON.stringify([...discoveredButtons]));
     }
 
     // Typewriter Effect Function
@@ -140,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Set up button click handlers
+    // Set up button click handlers with discovery tracking
     buttonActions.forEach(button => {
         const btnElement = document.getElementById(button.id);
         const modalElement = document.getElementById(button.modal);
@@ -149,14 +151,18 @@ document.addEventListener('DOMContentLoaded', function() {
             btnElement.addEventListener('click', function(e) {
                 e.stopPropagation();
                 
-                // Track discovery
+                // Track discovery (first click only)
                 if (!discoveredButtons.has(button.id)) {
                     discoveredButtons.add(button.id);
                     updateDiscoveryCount();
+                    // Visual feedback for new discovery
                     btnElement.classList.add('new-discovery');
-                    setTimeout(() => btnElement.classList.remove('new-discovery'), 1000);
+                    setTimeout(() => {
+                        btnElement.classList.remove('new-discovery');
+                    }, 1000);
                 }
                 
+                // Show modal and text
                 modalElement.classList.add('active');
                 typeWriter(chatText, button.text);
             });
@@ -165,10 +171,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Close modal when clicking anywhere
     document.addEventListener('click', function(e) {
+        // Only close if we're not clicking a modal trigger button
         if (!e.target.closest('.image-button[data-modal], .image-button[id]')) {
             document.querySelectorAll('.modal-overlay').forEach(modal => {
-                modal.classList.remove('active');
+            modal.classList.remove('active');
             });
+            // Hide chat text when modal closes
             chatText.classList.remove('visible');
         }
     });
